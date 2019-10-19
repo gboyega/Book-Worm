@@ -71,7 +71,7 @@ const displayCards = (books, i) => {
                 <div class="col-xl-2 text-center">
                     <img src="${info.imageLinks.thumbnail}" class="card-img" alt="cover" style="width:200px; margin:1em;">
                     <p><a href="${info.previewLink}" class="card-link text-success" target="_blank">Preview</a></p>
-                    <p><a href="${info.infoLink}" class="card-link text-success" target="_blank">Get book</a></p> 
+                    <p><a href="${info.infoLink}" class="card-link text-success" target="_blank">Get book</a></p>
                 </div>
                 <div class="col-xl-10">
                     <div class="card-body">
@@ -86,6 +86,10 @@ const displayCards = (books, i) => {
                         <li class="list-group-item">${info.industryIdentifiers[0].type}: ${info.industryIdentifiers[0].identifier}</li>
                         <li class="list-group-item">Category: ${info.categories}</li>
                     </ul>
+                    <div class="card-footer text-muted">
+                        Data from <a href="books.google.com" class="card-link text-success" target="_blank">Google Books</a> 
+                    </div>
+                   
                 </div>
             </div>
         </div>`
