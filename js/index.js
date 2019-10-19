@@ -1,11 +1,45 @@
-// var url = `https://openlibrary.org/search.json?q=${...}`;
+var url;
 var content = document.getElementById("content");
+var search = document.getElementById("search");
+// var searchQuery = searchText.value;
 
+search.addEventListener("click", () => {
+    var searchText = document.getElementById("searchText").value;
+    // var searchQuery = searchText.textContent;
+    console.log(searchText);
+    url = `https://www.googleapis.com/books/v1/volumes?q=${searchText}&maxResults=40`;
+    var request = new XMLHttpRequest();
+    request.open('GET', url);
+    request.onload = () => {
+        if (request.status >= 200 && request.status < 400) {
+            var data = JSON.parse(request.responseText);
+            var books = data.items;
+            var eligible = [];
+            for (x = 0; x < books.length; x++) {
+                if (books[x].volumeInfo.imageLinks != null && books[x].volumeInfo.authors != null && books[x].volumeInfo.industryIdentifiers != null) {
+                    eligible.push(books[x]);
+                } else {
+                    continue;
+                }
+            }
+            console.log(eligible);
+            content.innerHTML = "";
+            for (var i = 0; i < eligible.length; i++) {
+                displayCards(eligible, i);
+            }
+        } else {
+            window.alert("There's a problem contacting the server, Please refresh or try again in a few moments.");
+        };
+    };
+
+    request.onerror = () => {
+        window.alert("There's a problem contacting the server, Please refresh or try again in a few moments.");
+    }
+    request.send();
+})
 
 window.onload = () => {
-    currency = "USD";
     url = "https://www.googleapis.com/books/v1/volumes?q=jungle+book&maxResults=40"
-        // url = "https://openlibrary.org/search.json?q=the+lord+of+the+rings&page=5";
     var request = new XMLHttpRequest();
     request.open('GET', url);
     request.onload = () => {
@@ -18,7 +52,7 @@ window.onload = () => {
                     eligible.push(books[x]);
                 } else { continue; }
             }
-            console.log(eligible);
+            console.log(eligible, search, searchText); //searchQuery);
             content.innerHTML = "";
             for (var i = 0; i < eligible.length; i++) {
                 displayCards(eligible, i);
@@ -44,7 +78,7 @@ const displayCards = (books, i) => {
                     <p><a href="${info.previewLink}" class="card-link">Preview</a></p>
                     <p><a href="${info.infoLink}" class="card-link">Get book</a></p> 
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="card-body">
                         <h5 class="card-title">${info.title}</h5>
                         <p class="card-text"><small class="text-muted">${info.subtitle}</small></p>
