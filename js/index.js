@@ -1,12 +1,9 @@
 var url;
 var content = document.getElementById("content");
 var search = document.getElementById("search");
-// var searchQuery = searchText.value;
 
 search.addEventListener("click", () => {
     var searchText = document.getElementById("searchText").value;
-    // var searchQuery = searchText.textContent;
-    console.log(searchText);
     url = `https://www.googleapis.com/books/v1/volumes?q=${searchText}&maxResults=40`;
     var request = new XMLHttpRequest();
     request.open('GET', url);
@@ -22,7 +19,6 @@ search.addEventListener("click", () => {
                     continue;
                 }
             }
-            console.log(eligible);
             content.innerHTML = "";
             for (var i = 0; i < eligible.length; i++) {
                 displayCards(eligible, i);
@@ -52,7 +48,6 @@ window.onload = () => {
                     eligible.push(books[x]);
                 } else { continue; }
             }
-            console.log(eligible, search, searchText); //searchQuery);
             content.innerHTML = "";
             for (var i = 0; i < eligible.length; i++) {
                 displayCards(eligible, i);
@@ -71,14 +66,14 @@ window.onload = () => {
 const displayCards = (books, i) => {
     var info = books[i].volumeInfo;
     var card =
-        `<div class="card border-secondary mb-3" style="margin:50px;">
+        `<div class="card border-secondary mb-3" style="margin:2em;">
             <div class="row no-gutters">
-                <div class="col-md-2 text-center">
-                    <img src="${info.imageLinks.thumbnail}" class="card-img" alt="cover" style="width:200px; margin:10px;">
+                <div class="col-xl-2 text-center">
+                    <img src="${info.imageLinks.thumbnail}" class="card-img" alt="cover" style="width:200px; margin:1em;">
                     <p><a href="${info.previewLink}" class="card-link text-success" target="_blank">Preview</a></p>
                     <p><a href="${info.infoLink}" class="card-link text-success" target="_blank">Get book</a></p> 
                 </div>
-                <div class="col-md-10">
+                <div class="col-xl-10">
                     <div class="card-body">
                         <h5 class="card-title">${info.title}</h5>
                         <p class="card-text"><small class="text-muted">${info.subtitle}</small></p>
