@@ -39,7 +39,7 @@ search.addEventListener("click", () => {
 })
 
 window.onload = () => {
-    url = "https://www.googleapis.com/books/v1/volumes?q=jungle+book&maxResults=40"
+    url = "https://www.googleapis.com/books/v1/volumes?q=2019&maxResults=40"
     var request = new XMLHttpRequest();
     request.open('GET', url);
     request.onload = () => {
@@ -75,8 +75,8 @@ const displayCards = (books, i) => {
             <div class="row no-gutters">
                 <div class="col-md-2 text-center">
                     <img src="${info.imageLinks.thumbnail}" class="card-img" alt="cover" style="width:200px; margin:10px;">
-                    <p><a href="${info.previewLink}" class="card-link">Preview</a></p>
-                    <p><a href="${info.infoLink}" class="card-link">Get book</a></p> 
+                    <p><a href="${info.previewLink}" class="card-link text-success" target="_blank">Preview</a></p>
+                    <p><a href="${info.infoLink}" class="card-link text-success" target="_blank">Get book</a></p> 
                 </div>
                 <div class="col-md-10">
                     <div class="card-body">
