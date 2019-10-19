@@ -53,7 +53,7 @@ window.onload = () => {
                 displayCards(eligible, i);
             }
         } else {
-            window.alert("There's a problem contacting the server, Please refresh or try again in a few moments.");
+            window.alert("There's a problem contacting the server, Please refresh or try again in a few moments");
         };
     };
 
