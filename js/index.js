@@ -35,7 +35,7 @@ search.addEventListener("click", () => {
 })
 
 window.onload = () => {
-    url = "https://www.googleapis.com/books/v1/volumes?q=pride+prejudice&maxResults=40"
+    url = "https://www.googleapis.com/books/v1/volumes?q=anatomy&maxResults=40"
     var request = new XMLHttpRequest();
     request.open('GET', url);
     request.onload = () => {
