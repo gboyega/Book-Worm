@@ -5,6 +5,19 @@ var search = document.getElementById("search");
 search.addEventListener("click", () => {
     var searchText = document.getElementById("searchText").value;
     url = `https://www.googleapis.com/books/v1/volumes?q=${searchText}&maxResults=40`;
+    if (searchText !== "" && searchText !== " ") {
+        getData(url);
+    } else {
+        window.alert("Please enter a search term that contains at least one alphanumeric character")
+    }
+})
+
+window.onload = () => {
+    url = "https://www.googleapis.com/books/v1/volumes?q=pride+prejudice&maxResults=40"
+    getData(url);
+}
+
+const getData = (url) => {
     var request = new XMLHttpRequest();
     request.open('GET', url);
     request.onload = () => {
@@ -30,35 +43,6 @@ search.addEventListener("click", () => {
 
     request.onerror = () => {
         window.alert("There's a problem contacting the server, Please refresh or try again in a few moments.");
-    }
-    request.send();
-})
-
-window.onload = () => {
-    url = "https://www.googleapis.com/books/v1/volumes?q=anatomy&maxResults=40"
-    var request = new XMLHttpRequest();
-    request.open('GET', url);
-    request.onload = () => {
-        if (request.status >= 200 && request.status < 400) {
-            var data = JSON.parse(request.responseText);
-            var books = data.items;
-            var eligible = [];
-            for (x = 0; x < books.length; x++) {
-                if (books[x].volumeInfo.imageLinks != null && books[x].volumeInfo.authors != null && books[x].volumeInfo.industryIdentifiers != null) {
-                    eligible.push(books[x]);
-                } else { continue; }
-            }
-            content.innerHTML = "";
-            for (var i = 0; i < eligible.length; i++) {
-                displayCards(eligible, i);
-            }
-        } else {
-            window.alert("There's a problem contacting the server, Please refresh or try again in a minutes.");
-        };
-    };
-
-    request.onerror = () => {
-        window.alert("There's a problem contacting the server, Please refresh or try again in a few minutes.");
     }
     request.send();
 }
