@@ -5,7 +5,7 @@ var search = document.getElementById("search");
 search.addEventListener("click", () => {
     var searchText = document.getElementById("searchText").value;
     url = `https://www.googleapis.com/books/v1/volumes?q=${searchText}&maxResults=40`;
-    if (searchText !== "" && searchText !== " ") {
+    if (searchText !== "" && searchText.trim(" ").length !== 0) {
         getData(url);
     } else {
         window.alert("Please enter a search term that contains at least one alphanumeric character")
@@ -21,7 +21,7 @@ const getData = (url) => {
     var request = new XMLHttpRequest();
     request.open('GET', url);
     request.onload = () => {
-        if (request.status >= 200 && request.status < 400) {
+        if (request.status = 200) {
             var data = JSON.parse(request.responseText);
             var books = data.items;
             var eligible = [];
@@ -53,8 +53,7 @@ const displayCards = (books, i) => {
         `<div class="card border-secondary mb-3" style="margin:2em;">
             <div class="row no-gutters">
                 <div class="col-xl-2 text-center">
-                    <img src="${info.imageLinks.thumbnail}" class="card-img" alt="cover" style="width:200px; margin:1em;">
-                    <p><a href="${info.previewLink}" class="card-link text-success" target="_blank">Preview</a></p>
+                    <a href="${info.previewLink}" class="bkCover" target="_blank"><img src="${info.imageLinks.thumbnail}" class="card-img " alt="cover" style="width:200px; margin:1em;"></a>
                     <p><a href="${info.infoLink}" class="card-link text-success" target="_blank">Get book</a></p>
                 </div>
                 <div class="col-xl-10">
@@ -71,7 +70,7 @@ const displayCards = (books, i) => {
                         <li class="list-group-item">Category: ${info.categories}</li>
                     </ul>
                     <div class="card-footer text-muted">
-                        Data from <a href="books.google.com" class="card-link text-success" target="_blank">Google Books</a> 
+                        Data from <a href="https://books.google.com/" class="card-link text-success" target="_blank">Google Books</a> 
                     </div>
                    
                 </div>
