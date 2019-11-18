@@ -4,16 +4,18 @@ var search = document.getElementById("search");
 
 search.addEventListener("click", () => {
     var searchText = document.getElementById("searchText").value;
-    url = `https://www.googleapis.com/books/v1/volumes?q=${searchText}&maxResults=40`;
+    url = `https://www.googleapis.com/books/v1/volumes?q=${searchText}&download=pdf&maxResults=40`;
     if (searchText !== "" && searchText.trim(" ").length !== 0) {
         getData(url);
+        
     } else {
         window.alert("Please enter a search term that contains at least one alphanumeric character")
     }
+    searchText = "";
 })
 
 window.onload = () => {
-    url = "https://www.googleapis.com/books/v1/volumes?q=pride+prejudice&maxResults=40"
+    url = "https://www.googleapis.com/books/v1/volumes?q=pride+prejudice&download=epub&maxResults=40"
     getData(url);
 }
 
@@ -25,6 +27,7 @@ const getData = (url) => {
             var data = JSON.parse(request.responseText);
             var books = data.items;
             var eligible = [];
+            console.log(eligible);
             for (x = 0; x < books.length; x++) {
                 if (books[x].volumeInfo.imageLinks != null && books[x].volumeInfo.authors != null && books[x].volumeInfo.industryIdentifiers != null) {
                     eligible.push(books[x]);
@@ -56,13 +59,14 @@ const displayCards = (books, i) => {
                 <div class="col-xl-2 text-center">
                     <a href="${info.previewLink}" class="bkCover" target="_blank"><img src="${info.imageLinks.thumbnail}" class="card-img m-2" alt="cover" style="width:200px;"></a>
 
-                    <p><a href="${info.infoLink}" class="card-link text-success" target="_blank">Get book</a></p>
+                    <p><a href="${books[i].accessInfo.pdf.downloadLink}" class="card-link text-success" target="_blank">Download</a></p>
 
                 </div>
 
                 <div class="col-xl-10">
                     <div class="card-body">
                         <h5 class="card-title">${info.title}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"></h6>
                         <p class="card-text">${info.description}</p>
                     </div>
                     <ul class="list-group list-group-flush">
@@ -73,7 +77,7 @@ const displayCards = (books, i) => {
                         <li class="list-group-item">Category: ${info.categories}</li>
                     </ul>
                     <div class="card-footer text-muted">
-                        Data from <a href="https://books.google.com/" class="card-link text-success" target="_blank">Google Books</a>
+                        Data from <a href="${info.infoLink}" class="card-link text-success" target="_blank">Google Books</a>
                     </div>
                    
                 </div>
