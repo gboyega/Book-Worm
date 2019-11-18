@@ -49,17 +49,20 @@ const getData = (url) => {
 
 const displayCards = (books, i) => {
     var info = books[i].volumeInfo;
+    console.log(books[i].id);
     var card =
-        `<div class="card border-secondary mb-3" style="margin:2em;">
+        `<div class="card border-secondary m-2 mt-3 mb-3">
             <div class="row no-gutters">
                 <div class="col-xl-2 text-center">
-                    <a href="${info.previewLink}" class="bkCover" target="_blank"><img src="${info.imageLinks.thumbnail}" class="card-img " alt="cover" style="width:200px; margin:1em;"></a>
+                    <a href="${info.previewLink}" class="bkCover" target="_blank"><img src="${info.imageLinks.thumbnail}" class="card-img m-2" alt="cover" style="width:200px;"></a>
+
                     <p><a href="${info.infoLink}" class="card-link text-success" target="_blank">Get book</a></p>
+
                 </div>
+
                 <div class="col-xl-10">
                     <div class="card-body">
                         <h5 class="card-title">${info.title}</h5>
-                        <p class="card-text"><small class="text-muted">${info.subtitle}</small></p>
                         <p class="card-text">${info.description}</p>
                     </div>
                     <ul class="list-group list-group-flush">
@@ -70,7 +73,7 @@ const displayCards = (books, i) => {
                         <li class="list-group-item">Category: ${info.categories}</li>
                     </ul>
                     <div class="card-footer text-muted">
-                        Data from <a href="https://books.google.com/" class="card-link text-success" target="_blank">Google Books</a> 
+                        Data from <a href="https://books.google.com/" class="card-link text-success" target="_blank">Google Books</a>
                     </div>
                    
                 </div>
