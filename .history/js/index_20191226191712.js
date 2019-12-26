@@ -51,13 +51,20 @@ const getData = (url) => {
 
 const displayCards = (books, i) => {
     var info = books[i].volumeInfo;
-    var card =
-        `<div class="card border-secondary m-2 mt-3 mb-3">
+    var card = `<div class="card border-secondary m-2 mt-3 mb-3">
             <div class="row no-gutters">
                 <div class="col-xl-2 text-center">
-                    <img src="${info.imageLinks.thumbnail}" class="card-img m-2" alt= ${info.title}+"cover" style="width:200px;">
-                    <p><a href="${info.previewLink}" class="card-link text-success" target="_blank">Preview</a></p>
-                    <p><a href="${books[i].accessInfo.epub.downloadLink}" class="card-link text-success" target="_blank">Download</a></p>
+                    <img src="${
+                      info.imageLinks.thumbnail
+                    }" class="card-img m-2" alt= ${
+      info.title
+    }"cover" style="width:200px;">
+                    <p><a href="${
+                      info.previewLink
+                    }" class="card-link text-success" target="_blank">Preview</a></p>
+                    <p><a href="${
+                      books[i].accessInfo.epub.downloadLink
+                    }" class="card-link text-success" target="_blank">Download</a></p>
                 
                 </div>
 
@@ -68,18 +75,30 @@ const displayCards = (books, i) => {
                         <p class="card-text">${info.description}</p>
                     </div>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Author: ${info.authors.join(", ")}</li>
-                        <li class="list-group-item">Published: ${info.publishedDate}</li>
-                        <li class="list-group-item">Publisher: ${info.publisher}</li>
-                        <li class="list-group-item">${info.industryIdentifiers[0].type}: ${info.industryIdentifiers[0].identifier}</li>
-                        <li class="list-group-item">Category: ${info.categories}</li>
+                        <li class="list-group-item">Author: ${info.authors.join(
+                          ", "
+                        )}</li>
+                        <li class="list-group-item">Published: ${
+                          info.publishedDate
+                        }</li>
+                        <li class="list-group-item">Publisher: ${
+                          info.publisher
+                        }</li>
+                        <li class="list-group-item">${
+                          info.industryIdentifiers[0].type
+                        }: ${info.industryIdentifiers[0].identifier}</li>
+                        <li class="list-group-item">Category: ${
+                          info.categories
+                        }</li>
                     </ul>
                     <div class="card-footer text-muted">
-                        Data from <a href="${info.infoLink}" class="card-link text-success" target="_blank">Google Books</a>
+                        Data from <a href="${
+                          info.infoLink
+                        }" class="card-link text-success" target="_blank">Google Books</a>
                     </div>
                    
                 </div>
             </div>
-        </div>`
+        </div>`;
     content.insertAdjacentHTML('beforeend', card);
 }
