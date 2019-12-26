@@ -55,7 +55,7 @@ const displayCards = (books, i) => {
         `<div class="card border-secondary m-2 mt-3 mb-3">
             <div class="row no-gutters">
                 <div class="col-xl-2 text-center">
-                    <img src="${info.imageLinks.thumbnail}" class="card-img m-2" alt= ${info.title}+"cover" style="width:200px;">
+                    <img src="${info.imageLinks.thumbnail}" class="card-img m-2" alt= ${info.title}"cover" style="width:200px;">
                     <p><a href="${info.previewLink}" class="card-link text-success" target="_blank">Preview</a></p>
                     <p><a href="${books[i].accessInfo.epub.downloadLink}" class="card-link text-success" target="_blank">Download</a></p>
                 
