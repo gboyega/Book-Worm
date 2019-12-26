@@ -51,6 +51,7 @@ const getData = (url) => {
 
 const displayCards = (books, i) => {
     var info = books[i].volumeInfo;
+    console.log(books[i].
     var card =
         `<div class="card border-secondary m-2 mt-3 mb-3">
             <div class="row no-gutters">

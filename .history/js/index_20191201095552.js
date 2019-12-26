@@ -27,6 +27,7 @@ const getData = (url) => {
             var data = JSON.parse(request.responseText);
             var books = data.items;
             var eligible = [];
+            conso;
             for (x = 0; x < books.length; x++) {
                 if (books[x].volumeInfo.imageLinks != null && books[x].volumeInfo.authors != null && books[x].volumeInfo.industryIdentifiers != null) {
                     eligible.push(books[x]);
@@ -51,6 +52,7 @@ const getData = (url) => {
 
 const displayCards = (books, i) => {
     var info = books[i].volumeInfo;
+    console.log(books[i].id);
     var card =
         `<div class="card border-secondary m-2 mt-3 mb-3">
             <div class="row no-gutters">
