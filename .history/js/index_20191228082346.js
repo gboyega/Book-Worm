@@ -30,7 +30,8 @@ const getData = (url) => {
             for (x = 0; x < books.length; x++) {
                 if (books[x].volumeInfo.imageLinks != null &&
                      books[x].volumeInfo.authors != null && 
-                     books[x].volumeInfo.industryIdentifiers != null) {
+                     books[x].volumeInfo.industryIdentifiers != null) 
+                     {
                     eligible.push(books[x]);
                 } else {
                     continue;
