@@ -33,7 +33,10 @@ const getData = (url) => {
                 }
             }
             content.innerHTML = "";
-            eligible.map(book => {displayCards(book);});
+            eligible.map
+            for (var i = 0; i < eligible.length; i++) {
+                displayCards(eligible, i);
+            }
         } else {
             window.alert("There's a problem contacting the server, Please refresh or try again in a few moments.");
         }
@@ -50,15 +53,15 @@ const getUrl = (searchText) => {
     return url;
 };
 
-const displayCards = (book) => {
-    var info = book.volumeInfo;
+const displayCards = (books, i) => {
+    var info = books[i].volumeInfo;
     var card =
         `<div class="card border-secondary m-2 mt-3 mb-3">
             <div class="row no-gutters">
                 <div class="col-xl-2 text-center">
                     <img src="${info.imageLinks.thumbnail}" class="card-img m-2" alt= ${info.title}+"cover" style="width:200px;">
                     <p><a href="${info.previewLink}" class="card-link text-success" target="_blank">Preview</a></p>
-                    <p><a href="${book.accessInfo.epub.downloadLink}" class="card-link text-success" target="_blank">Download</a></p>
+                    <p><a href="${books[i].accessInfo.epub.downloadLink}" class="card-link text-success" target="_blank">Download</a></p>
                 
                 </div>
 
