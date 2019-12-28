@@ -33,7 +33,7 @@ const getData = (url) => {
                 }
             }
             content.innerHTML = "";
-            eligible.map(book => {displayCards(book);});
+            eligible.map(book => {displayCards(book)});
         } else {
             window.alert("There's a problem contacting the server, Please refresh or try again in a few moments.");
         }
